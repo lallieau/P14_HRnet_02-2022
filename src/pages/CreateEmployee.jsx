@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { EmployeeForm } from '../components/EmployeeForm';
+import { EmployeeFormCopy } from '../components/EmployeeFormCopy';
 import { Layout } from '../components/Layout';
 
 const Title = styled.h1`
@@ -11,7 +11,7 @@ export const CreateEmployee = () => {
   return (
     <Layout title="Create Employee">
       <Title>Create Employee</Title>
-      <EmployeeForm />
+      <EmployeeFormCopy />
     </Layout>
   );
 };

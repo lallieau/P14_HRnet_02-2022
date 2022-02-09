@@ -52,7 +52,7 @@ const Button = styled.button`
 const Title = styled.h2``;
 
 export const EmployeeForm = () => {
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const [input, setInput] = useState({
@@ -89,7 +89,7 @@ export const EmployeeForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit()}>
       <FormWrapper>
         <Title>General</Title>
         <Field>
@@ -192,8 +192,6 @@ export const EmployeeForm = () => {
       <Button type="submit" disabled={isLoading ? true : false}>
         Save
       </Button>
-
-      <p>{error}</p>
     </Form>
   );
 };
