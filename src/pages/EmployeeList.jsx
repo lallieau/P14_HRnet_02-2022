@@ -9,7 +9,7 @@ const Title = styled.h1`
 
 export const EmployeeList = () => {
   return (
-    <Layout title="Employee List">
+    <Layout title="HRnet | Employee List">
       <Title>Employee List</Title>
       <EmployeeChart />
     </Layout>

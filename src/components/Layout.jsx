@@ -1,15 +1,18 @@
 import { NavigationBar } from './NavigationBar';
-import { SEO } from '../utils/SEO';
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 const Content = styled.main`
   margin: 10px auto;
 `;
 
 export const Layout = ({ children, title }) => {
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+
   return (
     <>
-      {/* <SEO title={title} /> */}
       <NavigationBar />
       <Content>{children}</Content>
     </>

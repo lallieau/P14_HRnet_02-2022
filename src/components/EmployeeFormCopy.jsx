@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { states } from '../assets/data/states';
+import { departments } from '../assets/data/departments';
 import { useForm, Controller } from 'react-hook-form';
 import { Field } from './Form/Field';
 import { SelectField } from './Form/SelectField';
-// import { ErrorMessage } from '@hookform/error-message';
 
 const Form = styled.form`
   width: 60%;
@@ -37,7 +38,6 @@ export const EmployeeFormCopy = () => {
   const {
     register,
     handleSubmit,
-    watch,
     control,
     formState: { errors },
   } = useForm();
@@ -109,7 +109,20 @@ export const EmployeeFormCopy = () => {
           errors={errors.city}
           message="Please enter the city"
         />
-        <Field label="State" input="state" register={register} required />
+
+        <Controller
+          control={control}
+          name={'state'}
+          rules={{
+            required: {
+              value: true,
+              message: 'Please select state',
+            },
+          }}
+          render={({ fieldState: { error } }) => (
+            <SelectField label={'State'} options={states} errors={error} />
+          )}
+        />
         <Field
           label="ZipCode"
           input="zipCode"
@@ -124,27 +137,23 @@ export const EmployeeFormCopy = () => {
 
       <FormWrapper>
         <Title>Department</Title>
-        {/* <Controller
+        <Controller
           control={control}
           name={'department'}
-          rules={{ required: true }}
+          rules={{
+            required: {
+              value: true,
+              message: 'Please select department',
+            },
+          }}
           render={({ fieldState: { error } }) => (
             <SelectField
               label={'Department'}
-              options={[
-                { value: 'sales', label: 'Sales' },
-                { value: 'marketing', label: 'Marketing' },
-                { value: 'engineering', label: 'Engineering' },
-                { value: 'humanResources', label: 'Human Resources' },
-                { value: 'legal', label: 'Legal' },
-              ]}
+              options={departments}
               errors={error}
-              message="Please select department"
             />
           )}
-        /> */}
-
-        {/* <ErrorMessage errors={errors} name={'department'} /> */}
+        />
       </FormWrapper>
 
       <Button type="submit">Save</Button>

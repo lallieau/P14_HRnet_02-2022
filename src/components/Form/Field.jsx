@@ -3,12 +3,11 @@ import styled from 'styled-components';
 const FieldContent = styled.div`
   display: flex;
   flex-direction: column;
-  padding-bottom: 16px;
+  margin-bottom: 16px;
 `;
-const Label = styled.label`
-  margin-bottom: 3px;
-`;
+const Label = styled.label``;
 const Input = styled.input`
+  margin-top: 3px;
   padding: 12px;
   border-radius: 5px;
   background-color: RGBA(172, 212, 164, 0.45);
