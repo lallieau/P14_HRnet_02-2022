@@ -8,38 +8,49 @@ import { DatePickerField } from './Form/DatePickerField';
 import { textRegex, streetRegex, zipCodesRegex } from '../helpers/regex';
 
 const Form = styled.form`
-  width: 60%;
+  max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  gap: 24px;
+  // align-items: start;
+  gap: 16px;
 `;
 const FormWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: self-end;
   width: 100%;
 `;
 const Button = styled.button`
-  right: 0;
+  width: 20%;
+  margin: 0 auto;
   margin-top: 10px;
   margin-bottom: 50px;
   padding: 16px 54px;
-  border-radius: 5px;
+  border-radius: 50px;
   color: #fff;
   font-weight: bold;
   background-color: #445441;
   border: none;
+  box-shadow: 0px 0px 8px #728c6d;
 
   &:hover {
     background-color: RGBA(68, 84, 65, 0.79);
     transition: 0.2s;
   }
 `;
-const Title = styled.h2``;
+const Title = styled.h2`
+  font-size: 20px;
+  margin: 0;
+`;
 
 export const EmployeeForm = () => {
   const {
     register,
     handleSubmit,
+    // setError,
     control,
     formState: { errors },
   } = useForm();
@@ -59,46 +70,53 @@ export const EmployeeForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
+      <Title>Basic Details</Title>
       <FormWrapper>
-        <Title>General</Title>
         <InputField
           label="First Name"
           input="firstName"
+          type="text"
+          placeholder="Enter the firstname"
           register={register}
           required
           pattern={textRegex}
           errors={errors.firstName}
-          message="Please enter the first name"
+          errorMessage="Please enter the first name"
         />
         <InputField
           label="Last Name"
           input="lastName"
+          type="text"
+          placeholder="Enter the lastname"
           register={register}
           required
           pattern={textRegex}
           errors={errors.lastName}
-          message="Please enter the last name"
+          errorMessage="Please enter the last name"
         />
+        <DatePickerField
+          label={'Date of birth'}
+          input={'birthdate'}
+          control={control}
+          // pattern={/^\d{2}\/\d{2}\/\d{4}$/}
+          errorMessage={'Please select birthdate'}
+        />
+      </FormWrapper>
+      {/* <FormWrapper>
         <InputField
           label="Date of birth"
           input="birthdate"
+          type="date"
+          isValueAsDate
           register={register}
           required
-          // pattern={/^\d{2}\/\d{2}\/\d{4}$/}
+          pattern={/^\d{2}\/\d{2}\/\d{4}$/}
           errors={errors.birthdate}
-          message="Please enter birthdate"
+          errorMessage="Please enter birthdate"
         />
-        <DatePickerField
-          label={'Start Date'}
-          input={'startDate'}
-          control={control}
-          // pattern={/^\d{2}\/\d{2}\/\d{4}$/}
-          message={'Please select start date'}
-        />
-      </FormWrapper>
-
+      </FormWrapper> */}
+      <Title>Adress</Title>
       <FormWrapper>
-        <Title>Adress</Title>
         <InputField
           label="Street"
           input="street"
@@ -106,7 +124,7 @@ export const EmployeeForm = () => {
           required
           pattern={streetRegex}
           errors={errors.street}
-          message="Please enter the street"
+          errorMessage="Please enter the street"
         />
         <InputField
           label="City"
@@ -115,13 +133,15 @@ export const EmployeeForm = () => {
           required
           pattern={textRegex}
           errors={errors.city}
-          message="Please enter the city"
+          errorMessage="Please enter the city"
         />
+      </FormWrapper>
+      <FormWrapper>
         <SelectField
           label={'State'}
           input={'state'}
           control={control}
-          message={'Please select state'}
+          errorMessage={'Please select state'}
           options={states}
         />
         <InputField
@@ -131,18 +151,36 @@ export const EmployeeForm = () => {
           required
           pattern={zipCodesRegex}
           errors={errors.zipCode}
-          message="Please enter zipCode"
+          errorMessage="Please enter zipCode"
         />
       </FormWrapper>
 
+      <Title>Department</Title>
       <FormWrapper>
-        <Title>Department</Title>
         <SelectField
           label={'Department'}
           input={'department'}
           control={control}
-          message={'Please select department'}
+          errorMessage={'Please select department'}
           options={departments}
+        />
+        {/* <InputField
+          label="Start Date"
+          input="startDate"
+          type="date"
+          isValueAsDate
+          register={register}
+          required
+          pattern={/^\d{2}\/\d{2}\/\d{4}$/}
+          errors={errors.startDate}
+          errorMessage="Please enter start Date"
+        /> */}
+        <DatePickerField
+          label={'Start Date'}
+          input={'startDate'}
+          control={control}
+          // pattern={/^\d{2}\/\d{2}\/\d{4}$/}
+          errorMessage={'Please select start date'}
         />
       </FormWrapper>
 

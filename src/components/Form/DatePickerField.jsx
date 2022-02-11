@@ -5,20 +5,29 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const DatePickerContent = styled.div`
   margin-bottom: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
   .input {
-    display: block;
-    box-sizing: border-box;
     width: 100%;
-    border-radius: 4px;
-    border: 1px solid white;
-    color: black;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    font-size: 14px;
-    background-color: RGBA(172, 212, 164, 0.45);
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 20px;
+    background-color: #f1f4f8;
+    border: none;
+
+    &:focus {
+      background-color: #fff;
+      outline: 1px solid #fff;
+      box-shadow: 0px 0px 7px #d7dade;
+    }
   }
 `;
-const Label = styled.label``;
+const Label = styled.label`
+  padding-left: 16px;
+  font-size: 14px;
+`;
 const ErrorMessage = styled.p`
   margin: 0;
   padding: 0;
@@ -31,7 +40,7 @@ export const DatePickerField = ({
   input,
   label,
   control,
-  message,
+  errorMessage,
   pattern,
 }) => {
   return (
@@ -44,11 +53,11 @@ export const DatePickerField = ({
         rules={{
           pattern: {
             value: pattern,
-            message: message,
+            message: errorMessage,
           },
           required: {
             value: true,
-            message: message,
+            message: errorMessage,
           },
         }}
         render={({ field, fieldState: { error } }) => (

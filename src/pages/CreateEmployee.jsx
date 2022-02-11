@@ -3,7 +3,7 @@ import { EmployeeForm } from '../components/EmployeeForm';
 import { Layout } from '../components/Layout';
 
 const Title = styled.h1`
-  margin-top: 46px;
+  margin-top: 36px;
   text-align: center;
 `;
 

@@ -1,17 +1,37 @@
 import styled from 'styled-components';
 
-const FieldContent = styled.div`
+const InputFieldContent = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
+  width: 100%;
 `;
-const Label = styled.label``;
+const Label = styled.label`
+  padding-left: 16px;
+  font-size: 12px;
+`;
 const Input = styled.input`
-  margin-top: 3px;
+  margin-top: 8px;
   padding: 12px;
-  border-radius: 5px;
-  background-color: RGBA(172, 212, 164, 0.45);
+  border-radius: 20px;
+  background-color: #f1f4f8;
   border: none;
+  color: #38393b;
+  font-size: 14px;
+  font-family: Poppins;
+  font-weight: 400;
+
+  ::placeholder {
+    color: rgba(56, 57, 59, 0.5);
+    font-size: 14px;
+    font-family: Poppins;
+    font-weight: 400;
+  }
+  &:focus {
+    background-color: #fff;
+    outline: 1px solid #fff;
+    box-shadow: 0px 0px 7px #d7dade;
+  }
 `;
 const ErrorMessage = styled.p`
   margin: 0;
@@ -27,13 +47,24 @@ export const InputField = ({
   required,
   pattern,
   errors,
-  message,
+  errorMessage,
+  isValueAsDate,
+  type,
+  placeholder,
 }) => {
   return (
-    <FieldContent>
+    <InputFieldContent>
       <Label>{label}</Label>
-      <Input {...register(input, { required, pattern: pattern })} />
-      {errors && <ErrorMessage>{message}</ErrorMessage>}
-    </FieldContent>
+      <Input
+        type={type}
+        placeholder={placeholder}
+        {...register(input, {
+          valueAsDate: isValueAsDate,
+          required,
+          pattern: pattern,
+        })}
+      />
+      {errors && <ErrorMessage>{errorMessage}</ErrorMessage>}
+    </InputFieldContent>
   );
 };
