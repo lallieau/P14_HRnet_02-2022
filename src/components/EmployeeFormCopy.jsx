@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { states } from '../assets/data/states';
 import { departments } from '../assets/data/departments';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { Field } from './Form/Field';
 import { SelectField } from './Form/SelectField';
 
@@ -43,6 +43,7 @@ export const EmployeeFormCopy = () => {
   } = useForm();
   const onSubmit = data => {
     alert(JSON.stringify(data));
+    console.log(JSON.stringify(data));
   };
 
   return (
@@ -55,7 +56,7 @@ export const EmployeeFormCopy = () => {
           register={register}
           required
           pattern={/^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/}
-          errors={errors.firsName}
+          errors={errors.firstName}
           message="Please enter the first name"
         />
         <Field
@@ -70,20 +71,18 @@ export const EmployeeFormCopy = () => {
         <Field
           label="Date of birth"
           input="birthdate"
-          type="date"
           register={register}
           required
-          pattern={/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/}
+          pattern={/^\d{2}\/\d{2}\/\d{4}$/}
           errors={errors.birthdate}
           message="Please enter birthdate"
         />
         <Field
           label="Start Date"
           input="startDate"
-          type="date"
           register={register}
           required
-          pattern={/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/}
+          pattern={/^\d{2}\/\d{2}\/\d{4}$/}
           errors={errors.startDate}
           message="Please enter start date"
         />
@@ -109,24 +108,16 @@ export const EmployeeFormCopy = () => {
           errors={errors.city}
           message="Please enter the city"
         />
-
-        <Controller
-          control={control}
+        <SelectField
+          label={'State'}
           name={'state'}
-          rules={{
-            required: {
-              value: true,
-              message: 'Please select state',
-            },
-          }}
-          render={({ fieldState: { error } }) => (
-            <SelectField label={'State'} options={states} errors={error} />
-          )}
+          control={control}
+          message={'Please select state'}
+          options={states}
         />
         <Field
           label="ZipCode"
           input="zipCode"
-          type="number"
           register={register}
           required
           pattern={/(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)/}
@@ -137,22 +128,12 @@ export const EmployeeFormCopy = () => {
 
       <FormWrapper>
         <Title>Department</Title>
-        <Controller
-          control={control}
+        <SelectField
+          label={'Department'}
           name={'department'}
-          rules={{
-            required: {
-              value: true,
-              message: 'Please select department',
-            },
-          }}
-          render={({ fieldState: { error } }) => (
-            <SelectField
-              label={'Department'}
-              options={departments}
-              errors={error}
-            />
-          )}
+          control={control}
+          message={'Please select department'}
+          options={departments}
         />
       </FormWrapper>
 

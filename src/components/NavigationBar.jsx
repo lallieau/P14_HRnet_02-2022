@@ -34,6 +34,7 @@ const NavLink = styled(Link)`
 `;
 const Image = styled.img`
   width: 60px;
+  height: 55.2px;
 `;
 
 export const NavigationBar = () => {

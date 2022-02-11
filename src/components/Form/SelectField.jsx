@@ -1,6 +1,6 @@
-import Select from 'react-select';
-import { useState } from 'react';
 import styled from 'styled-components';
+import { Controller } from 'react-hook-form';
+import ReactSelect from 'react-select';
 
 const SelectContent = styled.div`
   margin-bottom: 16px;
@@ -40,19 +40,31 @@ const customStyles = {
   }),
 };
 
-export const SelectField = ({ label, errors, options }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
+export const SelectField = ({ name, label, control, options, message }) => {
   return (
     <SelectContent>
       <Label>{label}</Label>
-      <Select
-        placeholder={'Select...'}
-        defaultValue={selectedOption}
-        onChange={setSelectedOption}
-        options={options}
-        styles={customStyles}
+      <Controller
+        name={name}
+        control={control}
+        rules={{
+          required: {
+            value: true,
+            message: message,
+          },
+        }}
+        render={({ field, fieldState: { error } }) => (
+          <>
+            <ReactSelect
+              isClearable
+              {...field}
+              options={options}
+              styles={customStyles}
+            />
+            <ErrorMessage>{error?.message}</ErrorMessage>
+          </>
+        )}
       />
-      <ErrorMessage>{errors?.message}</ErrorMessage>
     </SelectContent>
   );
 };
