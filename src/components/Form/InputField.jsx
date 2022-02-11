@@ -20,7 +20,7 @@ const ErrorMessage = styled.p`
   color: #fc6c64;
 `;
 
-export const Field = ({
+export const InputField = ({
   label,
   input,
   register,

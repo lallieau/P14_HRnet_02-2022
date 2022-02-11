@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { EmployeeChart } from '../components/EmployeeChart';
+import { EmployeeTable } from '../components/EmployeeTable';
 import { Layout } from '../components/Layout';
 
 const Title = styled.h1`
@@ -11,7 +11,7 @@ export const EmployeeList = () => {
   return (
     <Layout title="HRnet | Employee List">
       <Title>Employee List</Title>
-      <EmployeeChart />
+      <EmployeeTable />
     </Layout>
   );
 };

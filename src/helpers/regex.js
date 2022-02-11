@@ -2,7 +2,7 @@
 
 // US ZipCode
 export const zipCodesRegex = /(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)/;
-export const dateRegex = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
+// export const dateRegex = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/;
 export const textRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/;
 export const streetRegex = /^[0-9a-zA-Z ]+$/g;
 

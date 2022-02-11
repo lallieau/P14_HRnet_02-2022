@@ -40,12 +40,12 @@ const customStyles = {
   }),
 };
 
-export const SelectField = ({ name, label, control, options, message }) => {
+export const SelectField = ({ input, label, control, options, message }) => {
   return (
     <SelectContent>
       <Label>{label}</Label>
       <Controller
-        name={name}
+        name={input}
         control={control}
         rules={{
           required: {

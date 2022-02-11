@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import {
-  zipCodesRegex,
-  dateRegex,
-  textRegex,
-  streetRegex,
-  checkBirthdateValidity,
-} from '../helpers/regex';
+import { states } from '../assets/data/states';
+import { departments } from '../assets/data/departments';
+import { useForm } from 'react-hook-form';
+import { InputField } from './Form/InputField';
+import { SelectField } from './Form/SelectField';
+import { DatePickerField } from './Form/DatePickerField';
+import { textRegex, streetRegex, zipCodesRegex } from '../helpers/regex';
 
 const Form = styled.form`
   width: 60%;
@@ -18,20 +17,6 @@ const Form = styled.form`
 `;
 const FormWrapper = styled.div`
   width: 100%;
-`;
-const Field = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 16px;
-`;
-const Label = styled.label`
-  margin-bottom: 3px;
-`;
-const Input = styled.input`
-  padding: 12px;
-  border-radius: 5px;
-  background-color: RGBA(172, 212, 164, 0.45);
-  border: none;
 `;
 const Button = styled.button`
   right: 0;
@@ -52,146 +37,116 @@ const Button = styled.button`
 const Title = styled.h2``;
 
 export const EmployeeForm = () => {
-  // const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
-  const [input, setInput] = useState({
-    firstName: '',
-    lastName: '',
-    birthdate: '',
-    startDate: '',
-    street: '',
-    city: '',
-    state: '',
-    zipCode: '',
-    department: '',
-  });
+  // const onSubmit = event => {
+  //   event.preventDefault();
+  //   handleSubmit(data => {
+  //     alert(JSON.stringify(data));
+  //     console.log(JSON.stringify(data));
+  //   });
+  // };
 
-  const checkValidityForm = () => {
-    if (
-      textRegex.test(input.lastName) &&
-      !checkBirthdateValidity(input.birthdate) &&
-      dateRegex.test(input.startDate) &&
-      streetRegex.test(input.street) &&
-      textRegex.test(input.city) &&
-      zipCodesRegex.test(input.zipCode)
-    ) {
-      console.log('form is valid');
-    } else {
-      console.log('error');
-    }
-  };
-
-  const handleSubmit = event => {
-    setIsLoading(true);
-    event.preventDefault();
-    checkValidityForm();
+  const onSubmit = data => {
+    alert(JSON.stringify(data));
+    console.log(JSON.stringify(data));
   };
 
   return (
-    <Form onSubmit={handleSubmit()}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormWrapper>
         <Title>General</Title>
-        <Field>
-          <Label htmlFor="firstname">FirstName</Label>
-          <Input
-            type="text"
-            id="firstname"
-            value={input.firstName}
-            onChange={e => setInput({ ...input, firstName: e.target.value })}
-          />
-        </Field>
-
-        <Field>
-          <Label htmlFor="lastname">LastName</Label>
-          <Input
-            type="text"
-            id="lastname"
-            value={input.lastName}
-            onChange={e => setInput({ ...input, lastName: e.target.value })}
-          />
-        </Field>
-
-        <Field>
-          <Label htmlFor="birthdate">Date of birth</Label>
-          <Input
-            type="date"
-            id="birthdate"
-            value={input.birthdate}
-            onChange={e => setInput({ ...input, birthdate: e.target.value })}
-          />
-        </Field>
-
-        <Field>
-          <Label htmlFor="start-date">Start date</Label>
-          <Input
-            type="date"
-            id="start-date"
-            value={input.startDate}
-            onChange={e => setInput({ ...input, startDate: e.target.value })}
-          />
-        </Field>
+        <InputField
+          label="First Name"
+          input="firstName"
+          register={register}
+          required
+          pattern={textRegex}
+          errors={errors.firstName}
+          message="Please enter the first name"
+        />
+        <InputField
+          label="Last Name"
+          input="lastName"
+          register={register}
+          required
+          pattern={textRegex}
+          errors={errors.lastName}
+          message="Please enter the last name"
+        />
+        <InputField
+          label="Date of birth"
+          input="birthdate"
+          register={register}
+          required
+          // pattern={/^\d{2}\/\d{2}\/\d{4}$/}
+          errors={errors.birthdate}
+          message="Please enter birthdate"
+        />
+        <DatePickerField
+          label={'Start Date'}
+          input={'startDate'}
+          control={control}
+          // pattern={/^\d{2}\/\d{2}\/\d{4}$/}
+          message={'Please select start date'}
+        />
       </FormWrapper>
 
       <FormWrapper>
         <Title>Adress</Title>
-        <Field>
-          <Label htmlFor="street">Street</Label>
-          <Input
-            type="text"
-            id="street"
-            value={input.street}
-            onChange={e => setInput({ ...input, street: e.target.value })}
-          />
-        </Field>
-
-        <Field>
-          <Label htmlFor="city">City</Label>
-          <Input
-            type="text"
-            id="city"
-            value={input.city}
-            onChange={e => setInput({ ...input, city: e.target.value })}
-          />
-        </Field>
-
-        <Field>
-          <Label htmlFor="state">State</Label>
-          <Input
-            type="text"
-            id="state"
-            value={input.state}
-            onChange={e => setInput({ ...input, state: e.target.value })}
-          />
-        </Field>
-
-        <Field>
-          <Label htmlFor="zip-code">Zip Code</Label>
-          <Input
-            type="number"
-            id="zip-code"
-            value={input.zipCode}
-            onChange={e => setInput({ ...input, zipCode: e.target.value })}
-          />
-        </Field>
+        <InputField
+          label="Street"
+          input="street"
+          register={register}
+          required
+          pattern={streetRegex}
+          errors={errors.street}
+          message="Please enter the street"
+        />
+        <InputField
+          label="City"
+          input="city"
+          register={register}
+          required
+          pattern={textRegex}
+          errors={errors.city}
+          message="Please enter the city"
+        />
+        <SelectField
+          label={'State'}
+          input={'state'}
+          control={control}
+          message={'Please select state'}
+          options={states}
+        />
+        <InputField
+          label="ZipCode"
+          input="zipCode"
+          register={register}
+          required
+          pattern={zipCodesRegex}
+          errors={errors.zipCode}
+          message="Please enter zipCode"
+        />
       </FormWrapper>
 
       <FormWrapper>
         <Title>Department</Title>
-        <Field>
-          <Label htmlFor="department">Department</Label>
-          <Input
-            type="text"
-            id="department"
-            value={input.department}
-            onChange={e => setInput({ ...input, department: e.target.value })}
-          />
-        </Field>
+        <SelectField
+          label={'Department'}
+          input={'department'}
+          control={control}
+          message={'Please select department'}
+          options={departments}
+        />
       </FormWrapper>
 
-      <Button type="submit" disabled={isLoading ? true : false}>
-        Save
-      </Button>
+      <Button type="submit">Save</Button>
     </Form>
   );
 };
