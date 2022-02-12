@@ -8,25 +8,27 @@ const SelectContent = styled.div`
 `;
 const Label = styled.label`
   padding-left: 16px;
-  font-size: 14px;
+  font-size: 12px;
 `;
 const ErrorMessage = styled.p`
   margin: 0;
-  padding: 0;
+  padding-left: 16px;
   font-size: 12px;
   color: #fc6c64;
   margint-bottom: 16px;
 `;
 
 const customStyles = {
-  control: base => ({
+  control: (base, state) => ({
     ...base,
-    background: '#f1f4f8',
+    background: state.isFocused ? '#fff' : '#f1f4f8',
     borderRadius: '20px',
     border: 'none',
     padding: '4.5px',
     marginTop: '8px',
     color: '#38393b',
+    outline: '1px solid #fff',
+    boxShadow: state.isFocused ? '0px 0px 7px #d7dade' : null,
   }),
   option: (provided, state) => ({
     ...provided,

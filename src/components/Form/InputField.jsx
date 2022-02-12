@@ -35,7 +35,7 @@ const Input = styled.input`
 `;
 const ErrorMessage = styled.p`
   margin: 0;
-  padding: 0;
+  padding-left: 16px;
   font-size: 12px;
   color: #fc6c64;
 `;

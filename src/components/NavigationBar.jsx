@@ -3,17 +3,20 @@ import { Link } from 'react-router-dom';
 import Logo from '../assets/logo-wealth-health.jpeg';
 
 const Nav = styled.nav`
+  // position: fixed;
+  // z-index: 1;
+  // left: 0;
+  // right: 0;
+  // top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
-  background-color: #fff;
-  box-shadow: 0px 0px 7px 1px RGBA(172, 212, 164, 0.4);
+  padding: 0 24px;
 `;
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
 `;
 const LinkWrapper = styled.div`
   display: flex;
@@ -22,13 +25,13 @@ const LinkWrapper = styled.div`
 `;
 const NavLink = styled(Link)`
   text-decoration: none;
-  color: RGBA(68, 84, 65, 0.79);
+  // color: #1fa0aa;
   &:visited {
-    color: RGBA(68, 84, 65, 0.79);
+    color: #1fa0aa;
   }
 
   &:hover {
-    color: RGBA(172, 212, 164, 1);
+    color: #fecf2d;
     transition: 0.2s;
   }
 `;
@@ -36,13 +39,16 @@ const Image = styled.img`
   width: 60px;
   height: 55.2px;
 `;
+const Title = styled.h2`
+  color: #1fa0aa;
+`;
 
 export const NavigationBar = () => {
   return (
     <Nav>
       <LogoWrapper>
-        <Image src={Logo} />
-        <NavLink to="/">HRnet</NavLink>
+        {/* <Image src={Logo} /> */}
+        <Title>HRnet</Title>
       </LogoWrapper>
       <LinkWrapper>
         <NavLink to="/">Create New</NavLink>

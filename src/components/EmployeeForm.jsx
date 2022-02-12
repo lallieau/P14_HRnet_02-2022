@@ -6,66 +6,101 @@ import { InputField } from './Form/InputField';
 import { SelectField } from './Form/SelectField';
 import { DatePickerField } from './Form/DatePickerField';
 import { textRegex, streetRegex, zipCodesRegex } from '../helpers/regex';
+import { useState, useEffect } from 'react';
 
 const Form = styled.form`
-  max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  // align-items: start;
   gap: 16px;
+  align-items: start;
 `;
 const FormWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: space-between;
-  gap: 24px;
+  column-gap: 24px;
   align-items: self-end;
   width: 100%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 414px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const Button = styled.button`
-  width: 20%;
-  margin: 0 auto;
-  margin-top: 10px;
+  margin-top: 24px;
   margin-bottom: 50px;
   padding: 16px 54px;
   border-radius: 50px;
   color: #fff;
   font-weight: bold;
-  background-color: #445441;
   border: none;
-  box-shadow: 0px 0px 8px #728c6d;
+  background-color: #1fa0aa;
+  box-shadow: 0px 0px 8px #77c4c9;
 
   &:hover {
-    background-color: RGBA(68, 84, 65, 0.79);
+    background-color: RGBA(31, 160, 170, 0.8);
     transition: 0.2s;
   }
 `;
 const Title = styled.h2`
   font-size: 20px;
   margin: 0;
+  width: 100%;
 `;
 
-export const EmployeeForm = () => {
+export const EmployeeForm = modalProps => {
+  const employees = JSON.parse(localStorage.getItem('employees')) || [];
+  const { setModalIsOpen } = modalProps;
+
+  const [employee, setEmployee] = useState({
+    firstName: '',
+    lastName: '',
+    birthdate: '',
+    startDate: '',
+    department: '',
+    street: '',
+    city: '',
+    state: '',
+    zipCode: '',
+  });
+
   const {
     register,
     handleSubmit,
-    // setError,
     control,
     formState: { errors },
-  } = useForm();
+    getValues,
+    setValue,
+    reset,
+  } = useForm({
+    defaultValues: employee,
+  });
 
-  // const onSubmit = event => {
-  //   event.preventDefault();
-  //   handleSubmit(data => {
-  //     alert(JSON.stringify(data));
-  //     console.log(JSON.stringify(data));
-  //   });
-  // };
+  const SaveEmployee = () => {
+    setEmployee({
+      firstName: getValues('firstName'),
+      lastName: getValues('lastName'),
+      birthdate: getValues('birthdate'),
+      startDate: getValues('startDate'),
+      department: getValues('department'),
+      street: getValues('street'),
+      city: getValues('city'),
+      state: getValues('state'),
+      zipCode: getValues('zipCode'),
+    });
+  };
 
-  const onSubmit = data => {
-    alert(JSON.stringify(data));
-    console.log(JSON.stringify(data));
+  const onSubmit = () => {
+    setModalIsOpen(true);
+    employees.push(employee);
+    localStorage.setItem('employees', JSON.stringify(employees));
+    console.log(employees);
+    reset();
   };
 
   return (
@@ -98,7 +133,7 @@ export const EmployeeForm = () => {
           label={'Date of birth'}
           input={'birthdate'}
           control={control}
-          // pattern={/^\d{2}\/\d{2}\/\d{4}$/}
+          pattern={/^\d{2}\/\d{2}\/\d{4}$/}
           errorMessage={'Please select birthdate'}
         />
       </FormWrapper>
@@ -135,8 +170,8 @@ export const EmployeeForm = () => {
           errors={errors.city}
           errorMessage="Please enter the city"
         />
-      </FormWrapper>
-      <FormWrapper>
+        {/* </FormWrapper>
+      <FormWrapper> */}
         <SelectField
           label={'State'}
           input={'state'}
@@ -179,12 +214,14 @@ export const EmployeeForm = () => {
           label={'Start Date'}
           input={'startDate'}
           control={control}
-          // pattern={/^\d{2}\/\d{2}\/\d{4}$/}
+          pattern={/^\d{2}\/\d{2}\/\d{4}$/}
           errorMessage={'Please select start date'}
         />
       </FormWrapper>
 
-      <Button type="submit">Save</Button>
+      <Button type="submit" onClick={() => SaveEmployee()}>
+        Save
+      </Button>
     </Form>
   );
 };
