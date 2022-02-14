@@ -80,6 +80,7 @@ export const SelectField = ({
   control,
   options,
   errorMessage,
+  placeholder,
 }) => {
   return (
     <SelectContent>
@@ -98,6 +99,7 @@ export const SelectField = ({
             <ReactSelect
               isClearable
               {...field}
+              placeholder={placeholder}
               options={options}
               styles={customStyles}
             />

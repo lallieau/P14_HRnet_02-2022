@@ -6,7 +6,7 @@ import { InputField } from './Form/InputField';
 import { SelectField } from './Form/SelectField';
 import { DatePickerField } from './Form/DatePickerField';
 import { textRegex, streetRegex, zipCodesRegex } from '../helpers/regex';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const Form = styled.form`
   margin: 0 auto;
@@ -155,6 +155,7 @@ export const EmployeeForm = modalProps => {
         <InputField
           label="Street"
           input="street"
+          placeholder="Enter the street"
           register={register}
           required
           pattern={streetRegex}
@@ -164,6 +165,7 @@ export const EmployeeForm = modalProps => {
         <InputField
           label="City"
           input="city"
+          placeholder="Enter the city"
           register={register}
           required
           pattern={textRegex}
@@ -175,6 +177,7 @@ export const EmployeeForm = modalProps => {
         <SelectField
           label={'State'}
           input={'state'}
+          placeholder="Select state"
           control={control}
           errorMessage={'Please select state'}
           options={states}
@@ -182,6 +185,7 @@ export const EmployeeForm = modalProps => {
         <InputField
           label="ZipCode"
           input="zipCode"
+          placeholder="Enter zipcode"
           register={register}
           required
           pattern={zipCodesRegex}
@@ -195,6 +199,7 @@ export const EmployeeForm = modalProps => {
         <SelectField
           label={'Department'}
           input={'department'}
+          placeholder="Select department"
           control={control}
           errorMessage={'Please select department'}
           options={departments}
