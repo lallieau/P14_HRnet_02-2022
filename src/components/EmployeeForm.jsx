@@ -75,7 +75,6 @@ export const EmployeeForm = modalProps => {
     control,
     formState: { errors },
     getValues,
-    setValue,
     reset,
   } = useForm({
     defaultValues: employee,
@@ -99,7 +98,9 @@ export const EmployeeForm = modalProps => {
     setModalIsOpen(true);
     employees.push(employee);
     localStorage.setItem('employees', JSON.stringify(employees));
+
     console.log(employees);
+
     reset();
   };
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -120,16 +121,16 @@ const headCells = [
     label: 'City',
   },
   {
-    id: 'zipCode',
-    label: 'zipCode',
-  },
-  {
     id: 'state',
     label: 'State',
   },
+  {
+    id: 'zipCode',
+    label: 'zipCode',
+  },
 ];
 
-function EnhancedTableHead(props) {
+function EmployeeTableHead(props) {
   const { order, orderBy, onRequestSort } = props;
   const createSortHandler = property => event => {
     onRequestSort(event, property);
@@ -161,11 +162,11 @@ function EnhancedTableHead(props) {
 }
 
 export const EmployeeTable = () => {
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('calories');
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -211,7 +212,7 @@ export const EmployeeTable = () => {
     setPage(0);
   };
 
-  const isSelected = name => selected.indexOf(name) !== -1;
+  //const isSelected = name => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -222,7 +223,7 @@ export const EmployeeTable = () => {
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
-            <EnhancedTableHead
+            <EmployeeTableHead
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
@@ -236,18 +237,14 @@ export const EmployeeTable = () => {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+                  //const isItemSelected = isSelected(row.name);
 
                   return (
                     <TableRow
                       hover
                       onClick={event => handleClick(event, row.name)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
-                      selected={isItemSelected}>
+                      key={row.firstName}>
                       <TableCell component="th" scope="row">
                         {row.firstName}
                       </TableCell>
@@ -264,14 +261,14 @@ export const EmployeeTable = () => {
                 })}
               {emptyRows > 0 && (
                 <TableRow>
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={9} />
                 </TableRow>
               )}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[10, 25, 50, 100]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
