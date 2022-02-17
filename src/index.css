@@ -10,3 +10,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  display: grid;
+}

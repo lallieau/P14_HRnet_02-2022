@@ -4,7 +4,6 @@ import { Layout } from '../components/Layout';
 
 const Title = styled.h1`
   margin-top: 36px;
-  text-align: center;
 `;
 
 export const EmployeeList = () => {

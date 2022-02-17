@@ -99,8 +99,6 @@ export const EmployeeForm = modalProps => {
     employees.push(employee);
     localStorage.setItem('employees', JSON.stringify(employees));
 
-    console.log(employees);
-
     reset();
   };
 
