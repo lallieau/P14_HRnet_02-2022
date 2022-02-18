@@ -15,6 +15,7 @@ const Form = styled.form`
   gap: 16px;
   align-items: start;
 `;
+
 const FormWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -31,24 +32,26 @@ const FormWrapper = styled.div`
     grid-template-columns: 1fr;
   }
 `;
+
 const Button = styled.button`
+  border-radius: ${({ theme }) => theme.borderRadius.button};
+  color: ${({ theme }) => theme.colors.light};
+  font-weight: ${({ theme }) => theme.fontWeight.extraBold};
+  background-color: ${({ theme }) => theme.colors.primary};
+  box-shadow: 0px 0px 8px #77c4c9;
   margin-top: 24px;
   margin-bottom: 50px;
   padding: 16px 54px;
-  border-radius: 50px;
-  color: #fff;
-  font-weight: bold;
   border: none;
-  background-color: #1fa0aa;
-  box-shadow: 0px 0px 8px #77c4c9;
 
   &:hover {
     background-color: RGBA(31, 160, 170, 0.8);
     transition: 0.2s;
   }
 `;
+
 const Title = styled.h2`
-  font-size: 20px;
+  font-size: ${({ theme }) => theme.fontSize.sm};
   margin: 0;
   width: 100%;
 `;

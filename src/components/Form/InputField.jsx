@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { ErrorMessage } from './ErrorMessage';
+import { Label } from './Label';
 
 const InputFieldContent = styled.div`
   display: flex;
@@ -6,38 +8,28 @@ const InputFieldContent = styled.div`
   margin-bottom: 16px;
   width: 100%;
 `;
-const Label = styled.label`
-  padding-left: 16px;
-  font-size: 12px;
-`;
-const Input = styled.input`
+
+export const Input = styled.input`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  border-radius: ${({ theme }) => theme.borderRadius.field};
+  background-color: ${({ theme }) => theme.colors.lightBackground};
   margin-top: 8px;
   padding: 12px;
-  border-radius: 20px;
-  background-color: #f1f4f8;
   border: none;
-  color: #38393b;
-  font-size: 14px;
-  font-family: Poppins;
-  font-weight: 400;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
 
   ::placeholder {
-    color: rgba(56, 57, 59, 0.5);
-    font-size: 14px;
-    font-family: Poppins;
-    font-weight: 400;
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    color: ${({ theme }) => theme.colors.placeholder};
+    font-size: ${({ theme }) => theme.fontSize.sm};
   }
+
   &:focus {
-    background-color: #fff;
-    outline: 1px solid #fff;
-    box-shadow: 0px 0px 7px #d7dade;
+    background-color: ${({ theme }) => theme.colors.light};
+    outline: 1px solid ${({ theme }) => theme.colors.light};
+    box-shadow: 0px 0px 7px ${({ theme }) => theme.colors.shadow};
   }
-`;
-const ErrorMessage = styled.p`
-  margin: 0;
-  padding-left: 16px;
-  font-size: 12px;
-  color: #fc6c64;
 `;
 
 export const InputField = ({
@@ -64,7 +56,7 @@ export const InputField = ({
           pattern: pattern,
         })}
       />
-      {errors && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {errors && <ErrorMessage>{errorMessage} </ErrorMessage>}
     </InputFieldContent>
   );
 };

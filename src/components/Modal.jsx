@@ -22,13 +22,13 @@ const MODAL = styled.div`
   width: 100%;
 `;
 const ModalWrapper = styled.div`
+  background-color: ${({ theme }) => theme.colors.light};
+  box-shadow: 0px 0px 7px ${({ theme }) => theme.colors.shadow};
   width: 100%;
   max-width: 400px;
   animation: ${modalopen} 0.3s ease-in-out;
   border-radius: 20px;
   position: relative;
-  background-color: #fff;
-  box-shadow: 0px 0px 7px #d7dade;
   margin: 16px;
 `;
 const Image = styled.img`
@@ -55,25 +55,22 @@ const ModalFooter = styled.div`
   margin-top: 36px;
 `;
 const CloseButton = styled.button`
+  background-color: ${({ theme }) => theme.colors.secondary};
   padding: 12px;
   border-radius: 60px;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fecf2d;
-  // box-shadow: 0px 0px 8px #77c4c9;
 `;
 const RedirectButton = styled(Link)`
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  background-color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.text};
   padding: 12px 24px;
   border-radius: 30px;
   border: none;
-  background-color: #fecf2d;
-  // box-shadow: 0px 0px 8px #77c4c9;
-  color: #38393b;
-  font-size: 16px;
-  font-weight: 500;
-  font-family: Poppins;
   text-align: center;
   text-decoration: none;
 `;

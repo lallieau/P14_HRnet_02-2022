@@ -56,10 +56,22 @@ export const EmployeeTable = () => {
 
   const requestSearch = searchedVal => {
     const filteredRows = originalEmployeesRows.filter(row => {
-      return (
-        row.firstName.toLowerCase().includes(searchedVal.toLowerCase()) ||
-        row.lastName.toLowerCase().includes(searchedVal.toLowerCase())
-      );
+      return [
+        row.firstName,
+        row.lastName,
+        row.department,
+        row.street,
+        row.city,
+        row.state,
+        row.zipCode,
+      ].some(text => {
+        const [formattedText, formattedSearch] = [
+          text.trim().toLowerCase(),
+          searchedVal.trim().toLowerCase(),
+        ];
+
+        return formattedText.includes(formattedSearch);
+      });
     });
     setRows(filteredRows);
   };
