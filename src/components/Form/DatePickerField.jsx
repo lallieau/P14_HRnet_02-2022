@@ -44,7 +44,7 @@ export const DatePickerField = ({
               placeholderText="Select date"
               onChange={e => field.onChange(e)}
               selected={field.value}
-              customInput={<Input />}
+              customInput={<Input style={{ width: '91%' }} />}
             />
             <ErrorMessage>{error?.message}</ErrorMessage>
           </>

@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { getComparator } from '../helpers/sortEmployeeTable';
 import { EmployeeTableHead } from './EmployeeTableHeader';
+import { SearchBar } from './Form/SearchBar';
 
 //material ui
-import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import SearchBar from 'material-ui-search-bar';
+
+// import SearchBar from 'material-ui-search-bar';
 
 const dayjs = require('dayjs');
 
-const employees = JSON.parse(localStorage.getItem('employees'));
+const employees = JSON.parse(localStorage.getItem('employees')) ?? [];
 const originalEmployeesRows = employees.map(employee => {
   return {
     firstName: employee.firstName,
@@ -37,7 +37,6 @@ export const EmployeeTable = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const [rows, setRows] = useState(originalEmployeesRows);
-  const [searched, setSearched] = useState('');
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -55,6 +54,7 @@ export const EmployeeTable = () => {
   };
 
   const requestSearch = searchedVal => {
+    console.log(searchedVal);
     const filteredRows = originalEmployeesRows.filter(row => {
       return [
         row.firstName,
@@ -76,74 +76,64 @@ export const EmployeeTable = () => {
     setRows(filteredRows);
   };
 
-  const cancelSearch = () => {
-    setSearched('');
-    requestSearch(searched);
-  };
-
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - employees.length) : 0;
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
-        <SearchBar
-          value={searched}
-          onChange={searchVal => requestSearch(searchVal)}
-          onCancelSearch={() => cancelSearch()}
-        />
-        <TableContainer>
-          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
-            <EmployeeTableHead
-              order={order}
-              orderBy={orderBy}
-              onRequestSort={handleRequestSort}
-              rowCount={employees.length}
-            />
-            <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .sort(getComparator(order, orderBy))
-                .map((row, index) => {
-                  return (
-                    <TableRow hover tabIndex={-1} key={index}>
-                      <TableCell component="th" scope="row">
-                        {row.firstName}
-                      </TableCell>
-                      <TableCell>{row.lastName}</TableCell>
-                      <TableCell>
-                        {dayjs(row.birthdate).format('DD/MM/YYYY')}
-                      </TableCell>
-                      <TableCell>{row.department}</TableCell>
-                      <TableCell>
-                        {dayjs(row.startDate).format('DD/MM/YYYY')}
-                      </TableCell>
-                      <TableCell>{row.street}</TableCell>
-                      <TableCell>{row.city}</TableCell>
-                      <TableCell>{row.state}</TableCell>
-                      <TableCell>{row.zipCode}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
-                <TableRow>
-                  <TableCell colSpan={9} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 50, 100]}
-          component="div"
-          count={employees.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
-    </Box>
+    <>
+      <SearchBar requestSearch={requestSearch} />
+      <TableContainer>
+        <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
+          <EmployeeTableHead
+            order={order}
+            orderBy={orderBy}
+            onRequestSort={handleRequestSort}
+            rowCount={employees.length}
+          />
+          <TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .sort(getComparator(order, orderBy))
+              .map((row, index) => {
+                return (
+                  <TableRow hover tabIndex={-1} key={index}>
+                    <TableCell component="th" scope="row">
+                      {row.firstName}
+                    </TableCell>
+                    <TableCell>{row.lastName}</TableCell>
+                    <TableCell>
+                      {dayjs(row.birthdate).format('DD/MM/YYYY')}
+                    </TableCell>
+                    <TableCell>{row.department}</TableCell>
+                    <TableCell>
+                      {dayjs(row.startDate).format('DD/MM/YYYY')}
+                    </TableCell>
+                    <TableCell>{row.street}</TableCell>
+                    <TableCell>{row.city}</TableCell>
+                    <TableCell>{row.state}</TableCell>
+                    <TableCell>{row.zipCode}</TableCell>
+                  </TableRow>
+                );
+              })}
+            {emptyRows > 0 && (
+              <TableRow>
+                <TableCell colSpan={9} />
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 50, 100]}
+        component="div"
+        count={employees.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        style={{ marginBottom: '36px' }}
+      />
+    </>
   );
 };

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Modal } from '../components/Modal';
 
 const Title = styled.h1`
-  margin-bottom: 36px;
+  margin-bottom: 26px;
 `;
 
 export const CreateEmployee = () => {

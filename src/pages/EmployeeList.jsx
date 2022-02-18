@@ -3,7 +3,7 @@ import { EmployeeTable } from '../components/EmployeeTable';
 import { Layout } from '../components/Layout';
 
 const Title = styled.h1`
-  margin-top: 36px;
+  margin-top: 26px;
 `;
 
 export const EmployeeList = () => {

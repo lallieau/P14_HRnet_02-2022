@@ -12,7 +12,7 @@ const Form = styled.form`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   align-items: start;
 `;
 
@@ -38,14 +38,14 @@ const Button = styled.button`
   color: ${({ theme }) => theme.colors.light};
   font-weight: ${({ theme }) => theme.fontWeight.extraBold};
   background-color: ${({ theme }) => theme.colors.primary};
-  box-shadow: 0px 0px 8px #77c4c9;
+  box-shadow: 0px 0px 8px ${({ theme }) => theme.colors.shadow}
   margin-top: 24px;
-  margin-bottom: 50px;
+  margin-bottom: 36px;
   padding: 16px 54px;
   border: none;
 
   &:hover {
-    background-color: RGBA(31, 160, 170, 0.8);
+    background-color: ${({ theme }) => theme.colors.secondary};
     transition: 0.2s;
   }
 `;

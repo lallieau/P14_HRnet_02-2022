@@ -17,7 +17,6 @@ export const Input = styled.input`
   margin-top: 8px;
   padding: 12px;
   border: none;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
 
   ::placeholder {
     font-weight: ${({ theme }) => theme.fontWeight.bold};

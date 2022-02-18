@@ -13,6 +13,10 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: ${({ theme }) => theme.fontWeight.regular};
   }
   
+  input{
+    font-family: 'Poppins', sans-serif;
+  }
+  
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
