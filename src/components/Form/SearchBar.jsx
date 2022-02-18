@@ -14,6 +14,7 @@ const Form = styled.form`
 const Icon = styled.img`
   margin-bottom: 16px;
   width: 21px;
+  height: 21px;
   font-size: 0.85rem;
   border-radius: 0px 10px 10px 0px;
   background-color: #f1f4f8;

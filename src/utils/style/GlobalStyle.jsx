@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import '../../assets/fonts.css';
 
 /**
  * CSS Global styles for the site using styled.components

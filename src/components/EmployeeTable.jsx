@@ -11,8 +11,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
-// import SearchBar from 'material-ui-search-bar';
-
 const dayjs = require('dayjs');
 
 const employees = JSON.parse(localStorage.getItem('employees')) ?? [];
