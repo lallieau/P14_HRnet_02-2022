@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# P14_HRnet_02-2022
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Openclassrooms - Parcours développeur Front-end
 
-## Available Scripts
+## Projet 14 : Faites passer une librairie jQuery vers React
 
-In the project directory, you can run:
+### Scénario :
 
-### `npm start`
+WealthHealth est une société qui utilise une application web interne, appelée HRnet, qui gère les dossiers des employés. L'application est ancienne et utilise jQuery côté front end, ce qui entraîne des bugs considérables et une augmentation des plaintes en interne.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Mission :
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Convertir l'ensemble du projet HRNet en React.
+- Convertir l'un des quatre plugins jQuery actuels en React. Remplacer les 3 plugins jQuery restants par des composants React.
+- Effectuer des tests de performance Lighthouse en comparant l'ancienne et la nouvelle application.
 
-### `npm test`
+#### Conversion du projet HRNet
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Faire une nouvelle version des pages "Create Employee" et "Employee List" avec React.
+- Ajouter un système de gestion d'état (la version actuelle utilise un stockage local).
+- S'assurer que tout est cohérent au niveau du style. Pas d'obligation de refaire le design de l'application, mais possibilité de changer le style pour quelque chose de plus moderne.
+- Tester le code React avec une suite de tests unitaires. Sinon, seuls des tests manuels sont nécessaires.
 
-### `npm run build`
+#### Conversion des plugins
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Voici la liste des plugins jQuery actuellement utilisés qui doivent être convertis :
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Plugin de sélection de date
+- Plugin de fenêtre modale - jQuery.modal.js
+- Menus déroulants
+- Plugin pour les tables de données
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Lors de la conversion d'un plugin jQuery en un composant React, il faut garder à l'esprit de ne convertir que le code qui traite de la fonctionnalité réelle de l'interface utilisateur du plugin. Par exemple, si un plugin jQuery inclut du code AJAX, pas besoin de le convertir.
 
-### `npm run eject`
+#### Tests de performance
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Mesurer des données quantifiables (ex. : temps de chargement des pages, appels réseau) pour s'assurer que la conversion de l'application à React améliore effectivement les performances. Pour cela, faire des audits de performance Lighthouse. Pour comparer, faire un audit pour l'application jQuery HRnet actuelle, puis un autre une fois que l'application et le plugin jQuery choisi seront convertis en React.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+C'est tout ! Une fois que l'application HRnet en React fonctionne, publier le composant React sur npm sous forme de package et partager le lien. Possibilité d'utiliser les paquets GitHub comme alternative.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Installation :
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Prérequis
 
-## Learn More
+- [NodeJS](https://nodejs.org/en/) Version 14.16.0
+- [npm](https://www.npmjs.com/) Version 6.14.11
+- [Visual Studio Code](https://code.visualstudio.com/) ou un autre IDE de votre choix
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [React](https://reactjs.org/) Version 17.0.2
+- [React-router-dom](https://v5.reactrouter.com/web/guides/quick-start) Version 6.2.1
+- [Styled-components](https://styled-components.com/) Version 5.3.3
+- ...
 
-### Code Splitting
+### Installation et exécution du projet
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Frontend App
 
-### Analyzing the Bundle Size
+- Clonez ce référentiel sur votre ordinateur :
+  git clone https://github.com/lallieau/P14_HRnet_02-2022.git
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Dans ce dépôt, installez les paquets/dépendances : npm
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Exécutez l'application frontale : npm start
