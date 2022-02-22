@@ -9,7 +9,7 @@ import {
   textRegex,
   streetRegex,
   zipCodesRegex,
-  checkBirthdateValidity,
+  dateRegex,
 } from '../helpers/regex';
 import { useState } from 'react';
 
@@ -61,6 +61,11 @@ const Title = styled.h2`
   width: 100%;
 `;
 
+/**
+ * Render Create Employee Form
+ * @param {object} modalProps
+ * @returns {JSX}
+ */
 export const EmployeeForm = modalProps => {
   const employees = JSON.parse(localStorage.getItem('employees')) || [];
   const { setModalIsOpen } = modalProps;
@@ -88,6 +93,9 @@ export const EmployeeForm = modalProps => {
     defaultValues: employee,
   });
 
+  /**
+   * Save employee information to state
+   */
   const SaveEmployee = () => {
     setEmployee({
       firstName: getValues('firstName'),
@@ -102,6 +110,9 @@ export const EmployeeForm = modalProps => {
     });
   };
 
+  /**
+   * Update local storage with employee state
+   */
   const onSubmit = () => {
     setModalIsOpen(true);
     employees.push(employee);
@@ -141,7 +152,7 @@ export const EmployeeForm = modalProps => {
           input={'birthdate'}
           control={control}
           birthdateValue={getValues('birthdate')}
-          pattern={/^\d{2}\/\d{2}\/\d{4}$/}
+          pattern={dateRegex}
           errorMessage={'Please select birthdate'}
         />
       </FormWrapper>
@@ -201,12 +212,16 @@ export const EmployeeForm = modalProps => {
           label={'Start Date'}
           input={'startDate'}
           control={control}
-          pattern={/^\d{2}\/\d{2}\/\d{4}$/}
+          pattern={dateRegex}
           errorMessage={'Please select start date'}
         />
       </FormWrapper>
 
-      <Button type="submit" onClick={() => SaveEmployee()}>
+      <Button
+        type="submit"
+        onClick={() => {
+          SaveEmployee();
+        }}>
         Save
       </Button>
     </Form>

@@ -13,6 +13,10 @@ import TableRow from '@mui/material/TableRow';
 
 const dayjs = require('dayjs');
 
+/**
+ * Retrieve employee info from local storage,
+ * store it in state OriginalEmployeesRows
+ */
 const employees = JSON.parse(localStorage.getItem('employees')) ?? [];
 const originalEmployeesRows = employees.map(employee => {
   return {
@@ -28,6 +32,11 @@ const originalEmployeesRows = employees.map(employee => {
   };
 });
 
+/**
+ * Render Employee Table
+ * Component that uses material ui
+ * @returns {JSX}
+ */
 export const EmployeeTable = () => {
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('firstName');
@@ -36,23 +45,43 @@ export const EmployeeTable = () => {
 
   const [rows, setRows] = useState(originalEmployeesRows);
 
+  /**
+   * Sort the list in ascending or descending order according to a property
+   * (by default sort in ascending order of first names)
+   * @param {object} event
+   * @param {string} property
+   */
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
+  /**
+   * Change the table page
+   * @param {object} event
+   * @param {number} newPage
+   */
   const handleChangePage = (event, newPage) => {
+    console.log(typeof newPage);
     setPage(newPage);
   };
 
+  /**
+   * Change the number of rows to display in the table
+   * @param {object} event
+   */
   const handleChangeRowsPerPage = event => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
+  /**
+   * Filters the display of the list of employees in the table
+   * when a new value is entered in the search bar
+   * @param {string} searchedVal
+   */
   const requestSearch = searchedVal => {
-    console.log(searchedVal);
     const filteredRows = originalEmployeesRows.filter(row => {
       return [
         row.firstName,

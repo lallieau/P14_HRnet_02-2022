@@ -7,6 +7,11 @@ const MessageContent = styled.p`
   padding-left: 16px;
 `;
 
+/**
+ * Render Forms error message
+ * @param {object} children
+ * @returns {JSX}
+ */
 export const ErrorMessage = ({ children }) => {
   return <MessageContent>{children}</MessageContent>;
 };

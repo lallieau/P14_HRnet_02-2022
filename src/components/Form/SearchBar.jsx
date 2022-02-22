@@ -19,10 +19,15 @@ const Icon = styled.img`
   border-radius: 0px 10px 10px 0px;
   background-color: #f1f4f8;
   margin-top: 8px;
-  padding: 12px;
+  padding: 9px;
   border: none;
 `;
 
+/**
+ * Renders the table search bar
+ * @param {function} requestSearch
+ * @returns {JSX}
+ */
 export const SearchBar = ({ requestSearch }) => {
   const { register, getValues } = useForm();
 

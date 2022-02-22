@@ -29,10 +29,14 @@ const NavLink = styled(Link)`
     transition: 0.2s;
   }
 `;
-const Title = styled.h2`
+const Title = styled.h1`
   color: ${({ theme }) => theme.colors.primary};
 `;
 
+/**
+ * Renders the Header Navigation Bar
+ * @returns {JSX}
+ */
 export const NavigationBar = () => {
   return (
     <Nav>

@@ -9,6 +9,9 @@ const SelectContent = styled.div`
   width: 100%;
 `;
 
+/**
+ * Custom styles for reactSelect component based on react-select library
+ */
 const customStyles = {
   control: (base, state) => ({
     ...base,
@@ -66,6 +69,16 @@ const customStyles = {
   },
 };
 
+/**
+ * Render Form Select Field
+ * @param {string} input
+ * @param {string} label
+ * @param {object} control
+ * @param {object} options
+ * @param {string} errorMessage
+ * @param {string} placeholder
+ * @returns {JSX}
+ */
 export const SelectField = ({
   input,
   label,

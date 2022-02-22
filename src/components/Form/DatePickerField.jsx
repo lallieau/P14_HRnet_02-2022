@@ -14,6 +14,16 @@ const DatePickerContent = styled.div`
   flex-direction: column;
 `;
 
+/**
+ * Render Form Date Picker Field
+ * @param {string} input
+ * @param {string} label
+ * @param {object} control
+ * @param {string} errorMessage
+ * @param {object} pattern
+ * @param {string} birthdateValue
+ * @returns {JSX}
+ */
 export const DatePickerField = ({
   input,
   label,
@@ -37,7 +47,7 @@ export const DatePickerField = ({
                 birthdateValue &&
                 checkBirthdateValidity(birthdateValue) === false
               )
-                return 'trop jeune';
+                return 'Must be at least 18 years old';
             },
             pattern: {
               value: pattern,

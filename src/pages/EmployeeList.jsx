@@ -1,15 +1,13 @@
-import styled from 'styled-components';
 import { EmployeeTable } from '../components/EmployeeTable';
 import { Layout } from '../components/Layout';
 
-const Title = styled.h1`
-  margin-top: 26px;
-`;
-
+/**
+ * Render Employee List Page
+ * @returns {JSX}
+ */
 export const EmployeeList = () => {
   return (
-    <Layout title="HRnet | Employee List">
-      <Title>Employee List</Title>
+    <Layout title="Employee List">
       <EmployeeTable />
     </Layout>
   );

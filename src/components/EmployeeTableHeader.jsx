@@ -44,6 +44,11 @@ const headCells = [
   },
 ];
 
+/**
+ * Render Table Header
+ * @param {object} props
+ * @returns
+ */
 export const EmployeeTableHead = props => {
   const { order, orderBy, onRequestSort } = props;
   const createSortHandler = property => event => {

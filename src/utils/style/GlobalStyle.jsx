@@ -1,13 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
-import '../../assets/fonts.css';
 
 /**
  * CSS Global styles for the site using styled.components
  */
 export const GlobalStyle = createGlobalStyle`
+  * {
+    font-family: sans-serif !important; 
+  }
+
   body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #38393b;
@@ -15,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   input{
-    font-family: 'Poppins', sans-serif;
+    font-family: sans-serif;
   }
   
   code {

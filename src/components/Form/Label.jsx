@@ -5,6 +5,11 @@ const LabelContent = styled.label`
   padding-left: 16px;
 `;
 
+/**
+ * Render Form Label
+ * @param {object} children
+ * @returns {JSX}
+ */
 export const Label = ({ children }) => {
   return <LabelContent>{children}</LabelContent>;
 };

@@ -31,15 +31,27 @@ export const Input = styled.input`
   }
 `;
 
+/**
+ * Render Form Input Field
+ * @param {string} input
+ * @param {string} label
+ * @param {function} register
+ * @param {boolean} required
+ * @param {object} pattern
+ * @param {object} errors
+ * @param {string} errorMessage
+ * @param {string} type
+ * @param {string} placeholder
+ * @returns {JSX}
+ */
 export const InputField = ({
-  label,
   input,
+  label,
   register,
   required,
   pattern,
   errors,
   errorMessage,
-  isValueAsDate,
   type,
   placeholder,
 }) => {
@@ -50,7 +62,6 @@ export const InputField = ({
         type={type}
         placeholder={placeholder}
         {...register(input, {
-          valueAsDate: isValueAsDate,
           required,
           pattern: pattern,
         })}
