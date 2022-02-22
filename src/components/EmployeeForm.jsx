@@ -5,7 +5,12 @@ import { useForm } from 'react-hook-form';
 import { InputField } from './Form/InputField';
 import { SelectField } from './Form/SelectField';
 import { DatePickerField } from './Form/DatePickerField';
-import { textRegex, streetRegex, zipCodesRegex } from '../helpers/regex';
+import {
+  textRegex,
+  streetRegex,
+  zipCodesRegex,
+  checkBirthdateValidity,
+} from '../helpers/regex';
 import { useState } from 'react';
 
 const Form = styled.form`
@@ -135,23 +140,11 @@ export const EmployeeForm = modalProps => {
           label={'Date of birth'}
           input={'birthdate'}
           control={control}
+          birthdateValue={getValues('birthdate')}
           pattern={/^\d{2}\/\d{2}\/\d{4}$/}
           errorMessage={'Please select birthdate'}
         />
       </FormWrapper>
-      {/* <FormWrapper>
-        <InputField
-          label="Date of birth"
-          input="birthdate"
-          type="date"
-          isValueAsDate
-          register={register}
-          required
-          pattern={/^\d{2}\/\d{2}\/\d{4}$/}
-          errors={errors.birthdate}
-          errorMessage="Please enter birthdate"
-        />
-      </FormWrapper> */}
       <Title>Adress</Title>
       <FormWrapper>
         <InputField
@@ -174,8 +167,6 @@ export const EmployeeForm = modalProps => {
           errors={errors.city}
           errorMessage="Please enter the city"
         />
-        {/* </FormWrapper>
-      <FormWrapper> */}
         <SelectField
           label={'State'}
           input={'state'}
@@ -206,17 +197,6 @@ export const EmployeeForm = modalProps => {
           errorMessage={'Please select department'}
           options={departments}
         />
-        {/* <InputField
-          label="Start Date"
-          input="startDate"
-          type="date"
-          isValueAsDate
-          register={register}
-          required
-          pattern={/^\d{2}\/\d{2}\/\d{4}$/}
-          errors={errors.startDate}
-          errorMessage="Please enter start Date"
-        /> */}
         <DatePickerField
           label={'Start Date'}
           input={'startDate'}

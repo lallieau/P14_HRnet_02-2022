@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ErrorMessage } from './ErrorMessage';
 import { Input } from './InputField';
 import { Label } from './Label';
+import { checkBirthdateValidity } from '../../helpers/regex';
 
 const DatePickerContent = styled.div`
   margin-bottom: 16px;
@@ -19,37 +20,76 @@ export const DatePickerField = ({
   control,
   errorMessage,
   pattern,
+  birthdateValue,
 }) => {
   return (
     <DatePickerContent>
       <Label>{label}</Label>
-      <Controller
-        defaultValue=""
-        control={control}
-        name={input}
-        rules={{
-          pattern: {
-            value: pattern,
-            message: errorMessage,
-          },
-          required: {
-            value: true,
-            message: errorMessage,
-          },
-        }}
-        render={({ field, fieldState: { error } }) => (
-          <>
-            <DatePicker
-              className="input"
-              placeholderText="Select date"
-              onChange={e => field.onChange(e)}
-              selected={field.value}
-              customInput={<Input style={{ width: '91%' }} />}
-            />
-            <ErrorMessage>{error?.message}</ErrorMessage>
-          </>
-        )}
-      />
+
+      {birthdateValue ? (
+        <Controller
+          defaultValue=""
+          control={control}
+          name={input}
+          rules={{
+            validate: birthdateValue => {
+              if (
+                birthdateValue &&
+                checkBirthdateValidity(birthdateValue) === false
+              )
+                return 'trop jeune';
+            },
+            pattern: {
+              value: pattern,
+              message: errorMessage,
+            },
+            required: {
+              value: true,
+              message: errorMessage,
+            },
+          }}
+          render={({ field, fieldState: { error } }) => (
+            <>
+              <DatePicker
+                className="input"
+                placeholderText="Select date"
+                onChange={e => field.onChange(e)}
+                selected={field.value}
+                customInput={<Input style={{ width: '91%' }} />}
+              />
+              <ErrorMessage>{error?.message}</ErrorMessage>
+            </>
+          )}
+        />
+      ) : (
+        <Controller
+          defaultValue=""
+          control={control}
+          name={input}
+          rules={{
+            pattern: {
+              value: pattern,
+              message: errorMessage,
+            },
+            required: {
+              value: true,
+              message: errorMessage,
+            },
+          }}
+          render={({ field, fieldState: { error } }) => (
+            <>
+              <DatePicker
+                className="input"
+                placeholderText="Select date"
+                onChange={e => field.onChange(e)}
+                selected={field.value}
+                customInput={<Input style={{ width: '91%' }} />}
+              />
+              <ErrorMessage>{error?.message}</ErrorMessage>
+            </>
+          )}
+        />
+      )}
     </DatePickerContent>
   );
 };

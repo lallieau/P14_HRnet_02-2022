@@ -12,9 +12,13 @@ export const streetRegex = /^[0-9a-zA-Z ]+$/g;
  * @param {string} birthdate
  * @returns {boolean}
  * */
-export const checkBirthdateValidity = birthdate => {
-  const optimizedBirthday = birthdate.replace(/-/g, '/');
-  const userBirthday = new Date(optimizedBirthday);
-  const userAge = ~~((Date.now() - userBirthday) / 31557600000);
-  return userAge < 18 || userAge > 100 ? true : false;
+export const checkBirthdateValidity = inputBirthdateValue => {
+  const dayjs = require('dayjs');
+  const today = dayjs();
+  const birthdate = dayjs(inputBirthdateValue);
+
+  return today.diff(birthdate, 'year') > 18 ||
+    today.diff(birthdate, 'year') > 100
+    ? true
+    : false;
 };

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { EmployeeForm } from '../components/EmployeeForm';
 import { Layout } from '../components/Layout';
 import { useState } from 'react';
-import { Modal } from 'p14-plugin/dist';
+import { Modal } from 'oc-p14-plugin';
 import done from '../assets/sammy-done.png';
 
 const Title = styled.h1`
