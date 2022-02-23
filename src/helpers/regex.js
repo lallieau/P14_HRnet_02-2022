@@ -1,7 +1,7 @@
 // Regex to check form validity
 
 export const zipCodesRegex = /(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)/; // US ZipCode
-export const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+export const dateRegex = /^\d{4}\-\d{2}\-\d{2}$/;
 export const textRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ]+$/;
 export const streetRegex = /^[0-9a-zA-Z ]+$/g;
 
@@ -16,7 +16,6 @@ export const checkBirthdateValidity = inputBirthdateValue => {
   const today = dayjs();
 
   const birthdate = dayjs(inputBirthdateValue);
-  console.log(today, birthdate);
 
   return today.diff(birthdate, 'year') > 18 ||
     today.diff(birthdate, 'year') > 100

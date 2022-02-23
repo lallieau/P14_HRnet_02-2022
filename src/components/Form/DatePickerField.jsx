@@ -3,7 +3,6 @@ import { Controller } from 'react-hook-form';
 import { ErrorMessage } from './ErrorMessage';
 import { Label } from './Label';
 import { checkBirthdateValidity } from '../../helpers/regex';
-import Cleave from 'cleave.js/react';
 
 const DatePickerContent = styled.div`
   margin-bottom: 16px;
@@ -34,72 +33,46 @@ export const DatePickerField = ({
     <DatePickerContent>
       <Label>{label}</Label>
 
-      {birthdateValue ? (
-        <Controller
-          defaultValue=""
-          control={control}
-          name={input}
-          rules={{
-            validate: birthdateValue => {
-              if (
-                birthdateValue &&
-                checkBirthdateValidity(birthdateValue) === false
-              )
-                return 'Must be at least 18 years old';
-            },
-            pattern: {
-              value: pattern,
-              message: errorMessage,
-            },
-            required: {
-              value: true,
-              message: errorMessage,
-            },
-          }}
-          render={({ field, fieldState: { error } }) => (
-            <>
-              <Cleave
-                className="input--date"
-                placeholder="jj / mm / yyyy"
-                date={'true'}
-                onChange={e => field.onChange(e)}
-                onInit={field.value}
-                delimiter="/"
-              />
-              <ErrorMessage>{error?.message}</ErrorMessage>
-            </>
-          )}
-        />
-      ) : (
-        <Controller
-          defaultValue=""
-          control={control}
-          name={input}
-          rules={{
-            pattern: {
-              value: pattern,
-              message: errorMessage,
-            },
-            required: {
-              value: true,
-              message: errorMessage,
-            },
-          }}
-          render={({ field, fieldState: { error } }) => (
-            <>
-              <Cleave
-                className="input--date"
-                placeholder="jj / mm / yyyy"
-                date={'true'}
-                onChange={e => field.onChange(e)}
-                onInit={field.value}
-                delimiter="/"
-              />
-              <ErrorMessage>{error?.message}</ErrorMessage>
-            </>
-          )}
-        />
-      )}
+      <Controller
+        defaultValue=""
+        control={control}
+        name={input}
+        rules={{
+          ...(birthdateValue
+            ? {
+                validate: birthdateValue => {
+                  if (
+                    birthdateValue &&
+                    checkBirthdateValidity(birthdateValue) === false
+                  )
+                    return 'Must be at least 18 years old';
+                },
+              }
+            : null),
+          pattern: {
+            value: pattern,
+            message: errorMessage,
+          },
+          required: {
+            value: true,
+            message: errorMessage,
+          },
+        }}
+        render={({ field, fieldState: { error } }) => (
+          <>
+            <input
+              type="date"
+              className="input--date"
+              onChange={e => {
+                field.onChange(e.target.value);
+                console.log(e.target.value);
+              }}
+              value={field.value}
+            />
+            <ErrorMessage>{error?.message}</ErrorMessage>
+          </>
+        )}
+      />
     </DatePickerContent>
   );
 };

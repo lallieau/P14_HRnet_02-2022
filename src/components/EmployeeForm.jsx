@@ -11,7 +11,7 @@ import {
   zipCodesRegex,
   dateRegex,
 } from '../helpers/regex';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Form = styled.form`
   margin: 0 auto;
@@ -67,7 +67,11 @@ const Title = styled.h2`
  * @returns {JSX}
  */
 export const EmployeeForm = modalProps => {
-  const employees = JSON.parse(localStorage.getItem('employees')) || [];
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    setEmployees(JSON.parse(localStorage.getItem('employees')) ?? []);
+  }, []);
+
   const { setModalIsOpen } = modalProps;
 
   const [employee, setEmployee] = useState({
@@ -92,7 +96,6 @@ export const EmployeeForm = modalProps => {
   } = useForm({
     defaultValues: employee,
   });
-
   /**
    * Save employee information to state
    */

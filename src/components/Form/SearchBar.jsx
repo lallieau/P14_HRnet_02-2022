@@ -19,7 +19,7 @@ const Icon = styled.img`
   border-radius: 0px 10px 10px 0px;
   background-color: #f1f4f8;
   margin-top: 8px;
-  padding: 9px;
+  padding: 11.2px;
   border: none;
 `;
 
