@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { ErrorMessage } from './ErrorMessage';
 import { Label } from './Label';
-import { checkBirthdateValidity } from '../../helpers/regex';
 
 const InputFieldContent = styled.div`
   display: flex;
