@@ -3,6 +3,7 @@ import { Controller } from 'react-hook-form';
 import { ErrorMessage } from './ErrorMessage';
 import { Label } from './Label';
 import { checkBirthdateValidity } from '../../helpers/regex';
+import { Input } from './InputField';
 
 const DatePickerContent = styled.div`
   margin-bottom: 16px;
@@ -60,7 +61,7 @@ export const DatePickerField = ({
         }}
         render={({ field, fieldState: { error } }) => (
           <>
-            <input
+            <Input
               type="date"
               className="input--date"
               onChange={e => {
