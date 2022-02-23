@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { Controller } from 'react-hook-form';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { ErrorMessage } from './ErrorMessage';
-import { Input } from './InputField';
 import { Label } from './Label';
 import { checkBirthdateValidity } from '../../helpers/regex';
+import Cleave from 'cleave.js/react';
 
 const DatePickerContent = styled.div`
   margin-bottom: 16px;
@@ -60,12 +58,13 @@ export const DatePickerField = ({
           }}
           render={({ field, fieldState: { error } }) => (
             <>
-              <DatePicker
-                className="input"
-                placeholderText="Select date"
+              <Cleave
+                className="input--date"
+                placeholder="jj / mm / yyyy"
+                date={'true'}
                 onChange={e => field.onChange(e)}
-                selected={field.value}
-                // customInput={<Input style={{ width: '91%' }} />}
+                onInit={field.value}
+                delimiter="/"
               />
               <ErrorMessage>{error?.message}</ErrorMessage>
             </>
@@ -88,12 +87,13 @@ export const DatePickerField = ({
           }}
           render={({ field, fieldState: { error } }) => (
             <>
-              <DatePicker
-                className="input"
-                placeholderText="Select date"
+              <Cleave
+                className="input--date"
+                placeholder="jj / mm / yyyy"
+                date={'true'}
                 onChange={e => field.onChange(e)}
-                selected={field.value}
-                customInput={<Input style={{ width: '91%' }} />}
+                onInit={field.value}
+                delimiter="/"
               />
               <ErrorMessage>{error?.message}</ErrorMessage>
             </>
