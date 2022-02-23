@@ -14,7 +14,9 @@ export const streetRegex = /^[0-9a-zA-Z ]+$/g;
 export const checkBirthdateValidity = inputBirthdateValue => {
   const dayjs = require('dayjs');
   const today = dayjs();
+
   const birthdate = dayjs(inputBirthdateValue);
+  console.log(today, birthdate);
 
   return today.diff(birthdate, 'year') > 18 ||
     today.diff(birthdate, 'year') > 100

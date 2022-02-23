@@ -161,6 +161,7 @@ export const EmployeeForm = modalProps => {
         <InputField
           label="Street"
           input="street"
+          type="text"
           placeholder="Enter the street"
           register={register}
           required
@@ -171,6 +172,7 @@ export const EmployeeForm = modalProps => {
         <InputField
           label="City"
           input="city"
+          type="text"
           placeholder="Enter the city"
           register={register}
           required
@@ -189,6 +191,7 @@ export const EmployeeForm = modalProps => {
         <InputField
           label="ZipCode"
           input="zipCode"
+          type="text"
           placeholder="Enter zipcode"
           register={register}
           required
