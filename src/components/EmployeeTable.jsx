@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getComparator } from '../helpers/sortEmployeeTable';
 import { EmployeeTableHead } from './EmployeeTableHeader';
 import { SearchBar } from './Form/SearchBar';
