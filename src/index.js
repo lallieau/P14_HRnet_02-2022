@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-snapshot';
+import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { theme } from './utils/style/theme';
@@ -18,7 +18,7 @@ const ThemeProvider = ({ children, theme }) => {
   );
 };
 
-render(
+ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>

@@ -14,35 +14,30 @@ import TableRow from '@mui/material/TableRow';
 const dayjs = require('dayjs');
 
 /**
- * Retrieve employee info from local storage,
- * store it in state OriginalEmployeesRows
- */
-
-/**
  * Render Employee Table
  * Component that uses material ui
  * @returns {JSX}
  */
 export const EmployeeTable = () => {
-  const [employees, setEmployees] = useState([]);
-  useEffect(() => {
-    setEmployees(JSON.parse(localStorage.getItem('employees')) ?? []);
-  }, []);
+  const [employees, setEmployees] = useState(
+    JSON.parse(localStorage.getItem('employees')) ?? [],
+  );
 
-  const originalEmployeesRows = employees.map(employee => {
-    return {
-      firstName: employee.firstName,
-      lastName: employee.lastName,
-      birthdate: employee.birthdate,
-      department: employee.department.label,
-      startDate: employee.startDate,
-      street: employee.street,
-      city: employee.city,
-      state: employee.state.value,
-      zipCode: employee.zipCode,
-    };
-  });
-
+  const [originalEmployeesRows, setOriginalEmployeesRows] = useState(
+    employees.map(employee => {
+      return {
+        firstName: employee.firstName,
+        lastName: employee.lastName,
+        birthdate: employee.birthdate,
+        department: employee.department.label,
+        startDate: employee.startDate,
+        street: employee.street,
+        city: employee.city,
+        state: employee.state.value,
+        zipCode: employee.zipCode,
+      };
+    }),
+  );
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('firstName');
   const [page, setPage] = useState(0);
@@ -68,7 +63,6 @@ export const EmployeeTable = () => {
    * @param {number} newPage
    */
   const handleChangePage = (event, newPage) => {
-    console.log(typeof newPage);
     setPage(newPage);
   };
 

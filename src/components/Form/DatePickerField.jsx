@@ -66,7 +66,6 @@ export const DatePickerField = ({
               className="input--date"
               onChange={e => {
                 field.onChange(e.target.value);
-                console.log(e.target.value);
               }}
               value={field.value}
             />
